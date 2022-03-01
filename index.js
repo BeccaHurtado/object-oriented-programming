@@ -2,8 +2,6 @@ const Manager = require("./util/Manager");
 const Intern = require("./util/Intern");
 const Engineer = require("./util/Engineer");
 const inquirer = require("inquirer");
-const { initial } = require("lodash");
-const { exit } = require("process");
 
 function init() {
     inquirer.prompt([
@@ -11,7 +9,7 @@ function init() {
             type: 'list',
             name: 'type',
             message: 'Are you a manager, intern, or engineer?',
-            choices: ['Manager', 'Intern', 'Engineer', 'Exit Application']
+            choices: ['Manager', 'Intern', 'Engineer', 'Exit']
         }
     ]).then(function(response) {
         switch(response.type) {
@@ -24,9 +22,11 @@ function init() {
             case "Engineer":
                 addEngineer()
                 break;
-            case "Exit Application":
+            case "Exit":
                 exitApp()
                 break;
         }
     })
 }
+
+init();
